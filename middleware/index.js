@@ -61,7 +61,6 @@ import learningTrack from './learning-track.js'
 import next from './next.js'
 import renderPage from './render-page.js'
 import assetPreprocessing from './asset-preprocessing.js'
-import favicon from './favicon.js'
 
 const { DEPLOYMENT_ENV, NODE_ENV } = process.env
 const isDevelopment = NODE_ENV === 'development'
@@ -111,9 +110,6 @@ export default function (app) {
       instrument(archivedEnterpriseVersionsAssets, './archived-enterprise-versions-assets')
     )
   )
-
-  app.use(favicon)
-
   // This must come before the express.static('assets') middleware.
   app.use(assetPreprocessing)
   // By specifying '/assets/cb-' and not just '/assets/' we

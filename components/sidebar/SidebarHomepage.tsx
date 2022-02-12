@@ -6,6 +6,8 @@ import { useVersion } from 'components/hooks/useVersion'
 import { useMainContext } from 'components/context/MainContext'
 import { Link } from 'components/Link'
 
+import { AllProductsLink } from './AllProductsLink'
+
 export const SidebarHomepage = () => {
   const router = useRouter()
   const { currentVersion } = useVersion()
@@ -53,6 +55,7 @@ export const SidebarHomepage = () => {
 
   return (
     <ul data-testid="sidebar" className="mt-4">
+      {!isFPT && <AllProductsLink />}
       <li>
         <ActionList {...{ as: 'ul' }} items={navItems}></ActionList>
       </li>

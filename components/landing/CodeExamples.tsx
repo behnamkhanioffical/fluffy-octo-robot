@@ -108,7 +108,7 @@ export const CodeExamples = () => {
           <p className="my-3 f4">
             {t('no_example')} <br /> {t('try_another')}
           </p>
-          <Link href="https://github.com/github/docs/tree/main/data/product-examples">
+          <Link href="https://github.com/github/docs/blob/main/data/product-examples/actions/code-examples.yml">
             {t('learn')} <ArrowRightIcon />
           </Link>
         </div>
