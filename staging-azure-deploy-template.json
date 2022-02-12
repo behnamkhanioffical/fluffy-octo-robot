@@ -22,8 +22,7 @@
       }
   },
   "variables": {
-    "appServicePlanName": "[concat('ASP-', parameters('appName'))]",
-    "dnsName": "[concat(parameters('appName'), '-', take(uniqueString(subscription().subscriptionId, resourceGroup().id, deployment().name), 6))]"
+      "appServicePlanName": "[concat('ASP-', parameters('appName'))]"
   },
   "resources": [
       {
@@ -43,16 +42,14 @@
       {
           "type": "Microsoft.Web/sites",
           "apiVersion": "2018-11-01",
-          "name": "[variables('dnsName')]",
+          "name": "[parameters('appName')]",
           "location": "[parameters('location')]",
           "dependsOn": [
               "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
           ],
-          "tags": {
-              "DocsAppName": "[parameters('appName')]"
-          },
+          "tags": {},
           "properties": {
-              "name": "[variables('dnsName')]",
+              "name": "[parameters('appName')]",
               "siteConfig": {
                   "appSettings": [
                       {
@@ -84,6 +81,10 @@
                           "value": "azure"
                       },
                       {
+                          "name": "WEB_CONCURRENCY",
+                          "value": "1"
+                      },
+                      {
                           "name": "ENABLED_LANGUAGES",
                           "value": "en"
                       }
@@ -104,7 +105,7 @@
   "outputs": {
       "defaultHostName": {
           "type": "string",
-          "value": "[concat('https://', variables('dnsName'), '.azurewebsites.net')]"
+          "value": "[concat('https://', parameters('appName'), '.azurewebsites.net')]"
       }
   }
 }
